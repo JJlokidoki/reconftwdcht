@@ -12,13 +12,13 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD curl -
 ## You can change these variables
 ARG COLLAB_SERVER="XXXXXXXXXX"
 ARG XSS_SERVER="XXXXXXXXXXX"
-ARG SHODAN_API_KEY="XXXXXXXXXXXXXX"
+ARG SHODAN_API_KEY=""
 
 ARG LANG=en_US.UTF-8
 ARG LANGUAGE=en_US
 
 ARG GIT_REPOSITORY_AXIOM="https://github.com/pry0cc/axiom"
-ARG GIT_REPOSITORY_RECONFTW="https://github.com/six2dez/reconftw"
+ARG GIT_REPOSITORY_RECONFTW="https://github.com/JJlokidoki/reconftwdcht"
 
 ##################################################
 ###> Do NOT change anything beyond this point <###
@@ -28,10 +28,10 @@ FROM kalilinux/kali-rolling:trunk AS base
 
 LABEL org.label-schema.name='reconftw'
 LABEL org.label-schema.description='A simple script for full recon'
-LABEL org.label-schema.usage='https://github.com/six2dez/reconftw'
-LABEL org.label-schema.url='https://github.com/six2dez/reconftw'
-LABEL org.label-schema.docker.cmd.devel='docker run --rm -ti six2dez/reconftw'
-LABEL MAINTAINER="six2dez"
+LABEL org.label-schema.usage='https://github.com/JJlokidoki/reconftwdcht'
+LABEL org.label-schema.url='https://github.com/JJlokidoki/reconftwdcht'
+LABEL org.label-schema.docker.cmd.devel='docker run --rm -ti JJlokidoki/reconftwdcht'
+LABEL MAINTAINER="JJlokidoki"
 
 ARG COLLAB_SERVER
 ARG XSS_SERVER
