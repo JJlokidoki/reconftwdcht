@@ -17,7 +17,7 @@ ARG SHODAN_API_KEY=""
 ARG LANG=en_US.UTF-8
 ARG LANGUAGE=en_US
 
-ARG GIT_REPOSITORY_AXIOM="https://github.com/pry0cc/axiom"
+# ARG GIT_REPOSITORY_AXIOM="https://github.com/pry0cc/axiom"
 ARG GIT_REPOSITORY_RECONFTW="https://github.com/JJlokidoki/reconftwdcht"
 
 ##################################################
@@ -40,7 +40,7 @@ ARG SHODAN_API_KEY
 ARG LANG
 ARG LANGUAGE
 
-ARG GIT_REPOSITORY_AXIOM
+# ARG GIT_REPOSITORY_AXIOM
 ARG GIT_REPOSITORY_RECONFTW
 
 ENV COLLAB_SERVER=$COLLAB_SERVER
@@ -51,7 +51,7 @@ ENV LANG=$LANG
 ENV LANGUAGE=$LANGUAGE
 ENV LC_ALL=$LANG
 
-ENV GIT_REPOSITORY_AXIOM=$GIT_REPOSITORY_AXIOM
+# ENV GIT_REPOSITORY_AXIOM=$GIT_REPOSITORY_AXIOM
 ENV GIT_REPOSITORY_RECONFTW=$GIT_REPOSITORY_RECONFTW
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -95,13 +95,13 @@ dpkg-reconfigure localepurge
 localepurge
 
 ###>> Configure Axiom <<###
-mkdir -p /root/.axiom/
-git clone ${GIT_REPOSITORY_AXIOM} /root/.axiom/
-cd /root/.axiom/interact
-./axiom-configure --unattended --shell Bash
+# mkdir -p /root/.axiom/
+# git clone ${GIT_REPOSITORY_AXIOM} /root/.axiom/
+# cd /root/.axiom/interact
+# ./axiom-configure --unattended --shell Bash
 ## This avoids useless error messages later.
-touch /root/.axiom/axiom.json
-touch /root/.axiom/interact/includes/functions.sh
+# touch /root/.axiom/axiom.json
+# touch /root/.axiom/interact/includes/functions.sh
 
 ###>> Install reconFTW <<###
 mkdir -p /root/Tools
@@ -131,22 +131,22 @@ COPY github_tokens.txt /root/Tools/.github_tokens
 COPY notify.conf /root/.config/notify/notify.conf
 
 ###>> Configure Axiom Provider <<###
-RUN <<eot
+# RUN <<eot
 ###>> Regenerate SSH Keys <<###
 # You REALLY do NOT want to use the default SSH keys in the base image
-find /root/.ssh -type f -delete
-ssh-keygen -b 2048 -t rsa -f /root/.ssh/axiom_rsa -q -N ""
-cat /root/.ssh/axiom_rsa.pub > /root/.axiom/configs/authorized_keys
-eot
+# find /root/.ssh -type f -delete
+# ssh-keygen -b 2048 -t rsa -f /root/.ssh/axiom_rsa -q -N ""
+# cat /root/.ssh/axiom_rsa.pub > /root/.axiom/configs/authorized_keys
+# eot
 
-COPY axiom-config.ini /root/.axiom/configs/config.ini
-COPY axiom-custom-provider.json /root/.axiom/accounts/personal.json
-RUN axiom-account personal
-RUN az group delete --name axiom --yes --no-wait
+# COPY axiom-config.ini /root/.axiom/configs/config.ini
+# COPY axiom-custom-provider.json /root/.axiom/accounts/personal.json
+# RUN axiom-account personal
+# RUN az group delete --name axiom --yes --no-wait
 
 # This command exits with return code 1, so leave the '|| :' or the build will fail.
-COPY axiom-custom-provider.json /root/.axiom/accounts/personal.json
-RUN axiom-build reconftw || :
+# COPY axiom-custom-provider.json /root/.axiom/accounts/personal.json
+# RUN axiom-build reconftw || :
 
 ## Issue 271
 EXPOSE 85-90
