@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.4
 
 # Specify a non-root user
-FROM kalilinux/kali-rolling:trunk AS base_reconftw
+FROM kalilinux/kali-rolling:latest AS base_reconftw
 USER nonrootuser
 
 # Add a healthcheck instruction
@@ -24,7 +24,7 @@ ARG GIT_REPOSITORY_RECONFTW="https://github.com/JJlokidoki/reconftwdcht"
 ###> Do NOT change anything beyond this point <###
 ##################################################
 
-FROM kalilinux/kali-rolling:trunk AS base
+FROM kalilinux/kali-rolling:latest AS base
 
 LABEL org.label-schema.name='reconftw'
 LABEL org.label-schema.description='A simple script for full recon'
